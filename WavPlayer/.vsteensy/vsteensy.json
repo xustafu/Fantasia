@@ -1,0 +1,66 @@
+{
+  "version": "1",
+  "target": "vsCode",
+  "buildSystem": "makefile",
+  "debugSupport": "none",
+  "configurations": [
+    {
+      "name": "default",
+      "guid": "5a18c5ff-58df-4fad-a875-97fe08ea9415",
+      "setupType": "quick",
+      "coreBase": "D:\\apl\\Arduino\\hardware\\teensy\\avr",
+      "compilerBase": "D:\\apl\\Arduino\\hardware\\tools\\arm",
+      "makefileExtension": null,
+      "copyCore": false,
+      "sharedLibraries": [],
+      "projectLibraries": [
+        "Audio",
+        "Encoder",
+        "SD",
+        "SerialFlash",
+        "SevSeg",
+        "SPI",
+        "Wire",
+        "Bounce2"
+      ],
+      "board": {
+        "name": "Teensy 4.0",
+        "options": {
+          "USB Type": "Serial",
+          "CPU Speed": "600 MHz",
+          "Optimize": "Faster",
+          "Keyboard Layout": "US English"
+        }
+      }
+    },
+    {
+      "name": "Testdummy",
+      "guid": "12b708d4-a19b-4cf0-8bbc-58a5bb343817",
+      "setupType": "quick",
+      "coreBase": "D:\\apl\\Arduino\\hardware\\teensy\\avr",
+      "compilerBase": "D:\\apl\\Arduino\\hardware\\tools\\arm",
+      "makefileExtension": null,
+      "copyCore": false,
+      "sharedLibraries": [],
+      "projectLibraries": [
+        "Audio",
+        "Encoder",
+        "encoder-master",
+        "SD",
+        "SerialFlash",
+        "SevSeg",
+        "SPI",
+        "Wire"
+      ],
+      "board": {
+        "name": "Teensy 4.1",
+        "options": {
+          "USB Type": "Serial",
+          "CPU Speed": "600 MHz",
+          "Optimize": "Faster",
+          "Keyboard Layout": "US English"
+        }
+      }
+    }
+  ]
+}
