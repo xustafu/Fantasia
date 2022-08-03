@@ -2,5 +2,5 @@
 
 Very simple distorsion. 
 
-Stereo input and output avaliable, 1 potentiometer to control gain level... so far
+Stereo input and output avaliable, potentiometer 1 to control gain level... so far
 
