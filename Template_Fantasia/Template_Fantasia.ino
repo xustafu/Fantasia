@@ -1,15 +1,21 @@
-#include "SegmentDisplay.h"
 #include <Audio.h>
 #include <Wire.h>
 #include <SPI.h>
 #include <SD.h>
 #include <SerialFlash.h>
 
-//Display LEDs Declaration
-SegmentDisplay segmentDisplay(30, 32, 33, 28, 31, 26, 29, 9);
+// Audio Declarations
+AudioSynthWaveform       waveform1;      //xy=684,318
+AudioOutputI2S           i2s1;           //xy=913,314
+AudioConnection          patchCord1(waveform1, 0, i2s1, 0);
+AudioConnection          patchCord2(waveform1, 0, i2s1, 1);
+AudioControlSGTL5000     sgtl5000_1;     //xy=1125,313
+// GUItool: end automatically generated code
 
-//Audio declarations
-AudioControlSGTL5000     sgtl5000_1;
+
+//Display LEDs Declaration
+//SegmentDisplay segmentDisplay(30, 32, 33, 28, 31, 26, 29, 9);
+
 
 //Teensy audio initialization Code
 
@@ -34,10 +40,10 @@ int Gate2 =6;
 int Encoderbut =4;
 
  // Variables to store port values 
-int PotValue1 = 0; 
-int PotValue2 = 0;
-int PotValue3 = 0;
-int PotValue4 = 0;
+float PotValue1 = 0; 
+float PotValue2 = 0;
+float PotValue3 = 0;
+float PotValue4 = 0;
 int BotonValue1 = 0;   
 int BotonValue2 = 0;
 int BotonValue3 = 0;
@@ -46,23 +52,19 @@ int GateValue1 = 0;
 int GateValue2 = 0;
 int EncoderbutValue =0;
 
+int mywaveform = 0;
 
 void setup() {
 
 //Audio setup
-AudioMemory(8);
+  AudioMemory(8);
   sgtl5000_1.enable();
   sgtl5000_1.volume(1);
   sgtl5000_1.inputSelect(AUDIO_INPUT_LINEIN);
   sgtl5000_1.micGain(36); //NEEDED?
   SPI.setMOSI(SDCARD_MOSI_PIN);
   SPI.setSCK(SDCARD_SCK_PIN);
-  if (!(SD.begin(SDCARD_CS_PIN))) {
-    while (1) {
-      Serial.println("Unable to access the SD card");
-      delay(500);
-    }
-  }
+  
   // open the serial port at 9600 bps:
   Serial.begin(9600); 
   
@@ -77,23 +79,21 @@ AudioMemory(8);
 
 
 //Set Display LEDs ports as Outputs 
-    pinMode(30, OUTPUT);    
-    pinMode(32, OUTPUT); 
-    pinMode(33, OUTPUT); 
-    pinMode(28, OUTPUT); 
-    pinMode(31, OUTPUT); 
-    pinMode(26, OUTPUT); 
-    pinMode(29, OUTPUT); 
-    pinMode(9, OUTPUT); 
-  delay(1000);
+  pinMode(30, OUTPUT);    
+  pinMode(32, OUTPUT); 
+  pinMode(33, OUTPUT); 
+  pinMode(28, OUTPUT); 
+  pinMode(31, OUTPUT); 
+  pinMode(26, OUTPUT); 
+  pinMode(29, OUTPUT); 
+  pinMode(9, OUTPUT); 
+
 
 }
 
 
 void loop() {
 
-
+ 
   
 }
-
- 
