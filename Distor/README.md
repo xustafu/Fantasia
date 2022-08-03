@@ -1,4 +1,4 @@
-# Distorzone
+# Distor test
 
 Very simple distorsion. 
 
