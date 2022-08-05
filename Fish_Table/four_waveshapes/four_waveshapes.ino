@@ -10,21 +10,22 @@
 // v1 and v2 are two different velocities phi1 and 2 are two different orientation
 
 // GUItool: begin automatically generated code
-AudioSynthWaveform       waveform2;      //xy=691,379
-AudioSynthWaveform       waveform1;      //xy=692,283
-AudioSynthWaveform       waveform4;      //xy=691,573
-AudioSynthWaveform       waveform3;      //xy=692,475
-AudioEffectDigitalCombine combine1;       //xy=939,342
-AudioEffectDigitalCombine combine2;       //xy=947,492
-AudioOutputI2S           i2s1;           //xy=1189,401
-AudioConnection          patchCord1(waveform2, 0, combine1, 1);
-AudioConnection          patchCord2(waveform1, 0, combine1, 0);
-AudioConnection          patchCord3(waveform4, 0, combine2, 1);
-AudioConnection          patchCord4(waveform3, 0, combine2, 0);
-AudioConnection          patchCord5(combine1, 0, i2s1, 0);
-AudioConnection          patchCord6(combine2, 0, i2s1, 1);
-AudioControlSGTL5000     sgtl5000_1;     //xy=974,165
+AudioSynthWaveform       waveform1;      //xy=290,270
+AudioSynthWaveform       waveform2;      //xy=290,370
+AudioSynthWaveform       waveform4;      //xy=290,564
+AudioSynthWaveform       waveform3;      //xy=291,466
+AudioMixer4              mixer1;         //xy=564,355
+AudioMixer4              mixer2;         //xy=569,481
+AudioOutputI2S           i2s1;           //xy=788,392
+AudioConnection          patchCord1(waveform1, 0, mixer1, 0);
+AudioConnection          patchCord2(waveform2, 0, mixer1, 1);
+AudioConnection          patchCord3(waveform4, 0, mixer2, 1);
+AudioConnection          patchCord4(waveform3, 0, mixer2, 0);
+AudioConnection          patchCord5(mixer1, 0, i2s1, 0);
+AudioConnection          patchCord6(mixer2, 0, i2s1, 1);
+AudioControlSGTL5000     sgtl5000_1;     //xy=573,156
 // GUItool: end automatically generated code
+
 
 // GUItool: end automatically generated code
 
@@ -180,6 +181,9 @@ void setup() {
   pinMode(29, OUTPUT); 
   pinMode(9, OUTPUT); 
 
+  //combine1.setCombineMode(AudioEffectDigitalCombine::MODULO);
+  //combine2.setCombineMode(AudioEffectDigitalCombine::AND);
+  
   // Wavetable variables
   int wavetype = WAVEFORM_ARBITRARY;
   waveform1.begin(wavetype);
@@ -215,23 +219,17 @@ void loop() {
 
 
 // it is possible to modify the range of frequency variation for each waveform 
-  waveform1.frequency(PotValue1*500);
-  waveform2.frequency(PotValue3*600);
-  waveform3.frequency(PotValue2*200);
-  waveform4.frequency(PotValue4*300);
-
-  // you can try this other setup!
-  //waveform1.frequency(PotValue1*60);
-  //waveform2.frequency(PotValue3*600);
-  //waveform3.frequency(PotValue2*100);
-  //waveform4.frequency(PotValue4*150);
+  waveform1.frequency(PotValue1 * 172);
+  waveform2.frequency(PotValue3 * 172);
+  waveform3.frequency(PotValue2 * 172);
+  waveform4.frequency(PotValue4 * 172);
   
-
-  waveform1.arbitraryWaveform(v1_array, 400);
-  waveform2.arbitraryWaveform(v2_array, 400);
-  waveform3.arbitraryWaveform(phi1_array, 400);
-  waveform4.arbitraryWaveform(phi2_array, 400);
-
+  // documentation says over 172hz, you will hear aliasing,  second arg is max Freq
+  waveform1.arbitraryWaveform(v1_array, 172);
+  waveform2.arbitraryWaveform(v2_array, 172);
+  waveform3.arbitraryWaveform(phi1_array, 172);
+  waveform4.arbitraryWaveform(phi2_array, 172);
+/*
 
   Serial.print("Potes:");
   Serial.print(PotValue1);
@@ -241,6 +239,6 @@ void loop() {
   Serial.print(PotValue3);
   Serial.print("\t"); 
   Serial.println(PotValue4);
-
+*/
   
 }
