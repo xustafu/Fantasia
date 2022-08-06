@@ -24,7 +24,9 @@
 #include <Encoder.h>
 
 //Display LEDs Declaration
-SegmentDisplay segmentDisplay(30, 32, 33, 28, 31, 26, 29, 9);
+//                             E   D   C  DP  B   A   G   F
+//                             1   2   4  5   6   7   9  10
+SegmentDisplay segmentDisplay(31, 28, 33, 9, 32, 30, 26, 29);
 
 //Audio declarations
 AudioControlSGTL5000     sgtl5000_1;
