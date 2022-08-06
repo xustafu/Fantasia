@@ -15,6 +15,7 @@
   DISPLAY = Isn't working at the moment.
 */
 
+// use: https://github.com/dgduncan/SevenSegment
 #include "SegmentDisplay.h"
 #include <Audio.h>
 #include <Wire.h>
