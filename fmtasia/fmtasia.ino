@@ -15,6 +15,7 @@
   DISPLAY = Isn't working at the moment.
 */
 
+// use: https://github.com/dgduncan/SevenSegment
 #include "SegmentDisplay.h"
 #include <Audio.h>
 #include <Wire.h>
@@ -24,7 +25,9 @@
 #include <Encoder.h>
 
 //Display LEDs Declaration
-SegmentDisplay segmentDisplay(30, 32, 33, 28, 31, 26, 29, 9);
+//                             E   D   C  DP  B   A   G   F
+//                             1   2   4  5   6   7   9  10
+SegmentDisplay segmentDisplay(31, 28, 33, 9, 32, 30, 26, 29);
 
 //Audio declarations
 AudioControlSGTL5000     sgtl5000_1;
@@ -103,14 +106,14 @@ AudioMemory(8);
   sgtl5000_1.volume(1);
   sgtl5000_1.inputSelect(AUDIO_INPUT_LINEIN);
   sgtl5000_1.micGain(36); //NEEDED?
-  SPI.setMOSI(SDCARD_MOSI_PIN);
-  SPI.setSCK(SDCARD_SCK_PIN);
-  if (!(SD.begin(SDCARD_CS_PIN))) {
-    while (1) {
-      Serial.println("Unable to access the SD card");
-      delay(500);
-    }
-  }
+//  SPI.setMOSI(SDCARD_MOSI_PIN);
+//  SPI.setSCK(SDCARD_SCK_PIN);
+//  if (!(SD.begin(SDCARD_CS_PIN))) {
+//    while (1) {
+//      Serial.println("Unable to access the SD card");
+//      delay(500);
+//    }
+//  }
   // open the serial port at 9600 bps:
   Serial.begin(9600); 
   

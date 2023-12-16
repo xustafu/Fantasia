@@ -1,8 +1,8 @@
-# Distorzone
+# Distorzone 
 
-Distorsion EQ
+Distorsion with EQ
 
-Pote1: gain bypass
-Pote2: highpass gain
-Pote3: bandpass gain
-Pote4: lowpass gain
+Pot1: gain
+Pot2: highpass EQ with distorsion
+Pot3: bandpass EQ with distorsion
+Pot4: lowpass EQ with distorsion
