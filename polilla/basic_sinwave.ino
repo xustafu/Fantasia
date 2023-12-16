@@ -3,6 +3,7 @@
 #include <SPI.h>
 #include <SD.h>
 #include <SerialFlash.h>
+//#include "Segment.h" 
 
 //This script implements a Sinusoidal wave in the Knob_1 of the Fantasia module
 //You can control the Frequency originally ranging from 0 to 440
@@ -101,6 +102,8 @@ void setup() {
 
 
 void loop() {
+  int encoder = analogRead(Encoderbut);
+  Serial.println(encoder);
   // read the value from the pot and scale it from 0 to 1. 
   PotValue1 = (float)analogRead(PotPort1) / 1023.0;
   PotValue2 = (float)analogRead(PotPort2) / 1023.0;
