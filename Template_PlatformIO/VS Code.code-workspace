@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "../../../VS Code"
+		},
+		{
+			"name": "Teensyduino",
+			"path": "."
+		}
+	],
+	"settings": {}
+}

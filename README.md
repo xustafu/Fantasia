@@ -6,9 +6,4 @@ Fantasía is a device based on Teensyduino audio platform, with stereo audio inp
 
 Thanks to Teensy Audio library online editor you can easily program your own sketches.
 
-Notes about using platformio:
 
-- Install VC Code
-- Install Platformio extension
-- Install git
- 
