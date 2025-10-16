@@ -47,6 +47,11 @@ void setup() {
   //int result = myFunction(2, 3);
   AudioMemory(8); // necesaria para que la libreria de audio funcione
 
+  // inicializamos el driver de audio
+  sgtl5000_1.enable();
+  sgtl5000_1.volume(1);
+  sgtl5000_1.inputSelect(AUDIO_INPUT_LINEIN);
+
   sine1.amplitude(amplitud); // amplitud a medio volumen para empezar
 
   // ponemos los botones en modo conectados HIGH por defecto
