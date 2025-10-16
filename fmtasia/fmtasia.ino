@@ -16,7 +16,7 @@
 */
 
 // use: https://github.com/dgduncan/SevenSegment
-#include "SegmentDisplay.h"
+#include "SegmentDisplay.h"  /* Seven Segment Library by Derek Duncan */
 #include <Audio.h>
 #include <Wire.h>
 #include <SPI.h>
