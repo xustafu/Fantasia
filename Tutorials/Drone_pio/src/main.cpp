@@ -23,21 +23,26 @@ AudioSynthWaveform waveform4;      // xy=159,562
 AudioSynthWaveform waveform1;      // xy=160,373
 AudioSynthWaveform waveform2;      // xy=160,439
 AudioInputI2S i2s2;                // xy=163,292
+AudioEffectGranular granular1;     // xy=298,722
 AudioMixer4 mixer1;                // xy=386,485
-AudioEffectBitcrusher bitcrusher1; // xy=519,487
-AudioFilterLadder filter_R;        // xy=659,519
-AudioFilterLadder filter_L;        // xy=661,455
-AudioOutputI2S i2s1;               // xy=863,478
+AudioEffectWaveFolder wavefolder1; // xy=525,379
+AudioEffectDelay delay1;           // xy=723,654
+AudioFilterLadder filter1;         // xy=760,394
+AudioMixer4 mixer2;                // xy=883,628
+AudioOutputI2S i2s1;               // xy=1041,492
 
 AudioConnection patchCord1(waveform3, 0, mixer1, 2);
 AudioConnection patchCord2(waveform4, 0, mixer1, 3);
 AudioConnection patchCord3(waveform1, 0, mixer1, 0);
 AudioConnection patchCord4(waveform2, 0, mixer1, 1);
-AudioConnection patchCord5(mixer1, bitcrusher1);
-AudioConnection patchCord6(bitcrusher1, 0, filter_L, 0);
-AudioConnection patchCord7(bitcrusher1, 0, filter_R, 0);
-AudioConnection patchCord8(filter_R, 0, i2s1, 1);
-AudioConnection patchCord9(filter_L, 0, i2s1, 0);
+AudioConnection patchCord5(i2s2, 0, wavefolder1, 1);
+AudioConnection patchCord6(mixer1, 0, wavefolder1, 0);
+AudioConnection patchCord7(wavefolder1, 0, filter1, 0);
+AudioConnection patchCord8(delay1, 0, mixer2, 0);
+AudioConnection patchCord9(delay1, 1, mixer2, 1);
+AudioConnection patchCord10(filter1, delay1);
+AudioConnection patchCord11(mixer2, 0, i2s1, 0);
+AudioConnection patchCord12(mixer2, 0, i2s1, 1);
 
 AudioControlSGTL5000 sgtl5000_1; // xy=193,144
 // GUItool: end automatically generated code
@@ -90,22 +95,26 @@ void setup() {
   mixer1.gain(2, 1.0);
   mixer1.gain(3, 1.0);
 
-  waveform1.amplitude(0.6);
-  waveform2.amplitude(0.6);
-  waveform3.amplitude(0.6);
-  waveform4.amplitude(0.6);
+  waveform1.amplitude(0.33);
+  waveform2.amplitude(0.33);
+  waveform3.amplitude(0.33);
+  waveform4.amplitude(0.33);
 
-  bitcrusher1.sampleRate(44100);
+  delay1.delay(0, 110);
+  delay1.delay(1, 220);
+  delay1.delay(2, 330);
+
+  // bitcrusher1.sampleRate(44100);
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
   if (digitalRead(button1_pin) == LOW)
   {
-    waveform1.begin(0.6, freq1, WAVEFORM_SINE);
-    waveform2.begin(0.6, freq2, WAVEFORM_SINE);
-    waveform3.begin(0.6, freq3, WAVEFORM_SINE);
-    waveform4.begin(0.6, freq4, WAVEFORM_SINE);
+    waveform1.begin(WAVEFORM_SINE);
+    waveform2.begin(WAVEFORM_SINE);
+    waveform3.begin(WAVEFORM_SINE);
+    waveform4.begin(WAVEFORM_SINE);
   }
   if (digitalRead(button2_pin) == LOW)
   {
@@ -138,24 +147,24 @@ void loop() {
   PotValue4 = analogRead(PotPort4);
 
   Potmaped1 = map(PotValue1, 0, 4095, 60, 12000);
-  filter_L.frequency(Potmaped1);
-  filter_R.frequency(Potmaped1);
+  filter1.frequency(Potmaped1);
+  // filter_R.frequency(Potmaped1);
 
   // PotRounded2 = map(PotValue2, 0, 1023, 0, 1);
 
-  filter_L.resonance(0);
-  filter_R.resonance(0);
+  filter1.resonance(0);
+  // filter_R.resonance(0);
 
-  Potmaped3 = map(PotValue3, 0, 4095, 0, 4);
+  Potmaped3 = map(PotValue3, 0, 4095, 0.0, 3.0);
 
-  filter_L.inputDrive(Potmaped3); // range is 0 to 4.0
-  filter_R.inputDrive(Potmaped3);
+  filter1.inputDrive(Potmaped3); // range is 0 to 4.0
+  // filter_R.inputDrive(Potmaped3);
 
   Potmaped4 = map(PotValue4, 0, 4095, 16, 1);
-  bitcrusher1.bits(Potmaped4);
+  // bitcrusher1.bits(Potmaped4);
 
-  filter_L.passbandGain(0.5); // range is 0 to 0.5
-  filter_R.passbandGain(0.5);
+  filter1.passbandGain(0.5); // range is 0 to 0.5
+  // filter_R.passbandGain(0.5);
 
   freq1 = map(PotValue2, 0, 4095, 440, 512);
   freq2 = map(PotValue2, 0, 4095, 440, 550);
